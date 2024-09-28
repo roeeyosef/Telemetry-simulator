@@ -1,0 +1,34 @@
+[
+  {
+    "ContainingType": "Telemetry_Simulator.Controllers.SimulatorController",
+    "Method": "Start",
+    "RelativePath": "StartSimulator",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Telemetry_Simulator.Controllers.SimulatorController",
+    "Method": "Stop",
+    "RelativePath": "StopSimulator",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  }
+]

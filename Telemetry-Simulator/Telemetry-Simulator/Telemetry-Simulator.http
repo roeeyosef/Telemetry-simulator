@@ -1,0 +1,6 @@
+@Telemetry_Simulator_HostAddress = http://localhost:5145
+
+GET {{Telemetry_Simulator_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
