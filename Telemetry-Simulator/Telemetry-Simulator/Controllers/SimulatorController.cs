@@ -1,40 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics.Tracing;
+using System.Net;
+using System.Net.Sockets;
 using System.Text.Encodings;
 using Telemetry_Simulator.Classes;
 using Telemetry_Simulator.Services;
 
 namespace Telemetry_Simulator.Controllers
 {
-    public class SimulatorController : Controller
+    public class SimulatorController(SimulatorService simulatorService) : Controller
     {
-        private CancellationTokenSource source;
-        private CancellationToken token;
-        private readonly BitwiseService bitwiseService = new BitwiseService();
+        private readonly SimulatorService _simulatorService = simulatorService;
 
         [HttpGet("StartSimulator")]
         public async Task Start()
         {
-            // starts running a simulation, disposes of the existing cancellation token if exists, and creates a new one
-            // while loop for the async task runs as long as the stop command wasn't executed
-            if (source != null && source.IsCancellationRequested) {
-                source.Dispose();
-            }
-            source = new CancellationTokenSource();
-            token = source.Token;
-            while (!token.IsCancellationRequested) {
-                List<BitwiseDTO> icd = bitwiseService.GetData();
-                foreach (BitwiseDTO icdLine in icd) {
-                    //TODO: figure out how to do the UDP transfer to the parse
-
-                }
-            }
+            await _simulatorService.Start();
         }
 
         [HttpGet("StopSimulator")]
         public void Stop()
         {
-            if (source != null)
-                source.Cancel();
+            _simulatorService.Stop();
         }
     }
 }
